@@ -1,0 +1,20 @@
+DOCKER rad iz CMD-a
+
+program iz komandnog pronta pozivamo sa docker u nastavku slede neke komande
+
+docker -v :provera verzije dockera
+
+docker hello-world :je pocetna komanda za proveru da li nasa konekcija i instalacija funkcionisu
+
+DOCKER IMAGES:
+images - je datoteka koja se sastoji iz vise slojeva i koristi se za izvrsavanje koda u doker kontenjerima. slika je izgradjena iz uputstva za potpunu i izvrsnu verziju aplikacije koja se oslanja na kernel(jezgro) OS-a. prilikom startovanja images u dokeru od strane korisnika images moze da bude samo jedan ili da bude u vise primera tog kontenjera.
+
+docker je softverska platforma za virtuelizaciju na nivou OS-a i open source je. prednost dockera je sto mozemo da premestamo kontenjere(koji sadrze aplikacije..) na razlicite OS bez javljanja problema jer slika ukljucuje sve zavisnosti potrebne za izvrsavanje koda. docker ce koristiti funkcije izloacije resursa kernel os-a za pokretanje nezavisnih kontenjera na istom OS-u
+
+docker images  :komanda daje lisu slika koje se nalaze u nasem sistemu za sada su to hello-world, alpine/git, python lista sadrzi podatke kao sto su (image id, created i size)
+
+docker search :se koristi koju god sliku zelimo da dohvatimo sa docker hub-a
+
+docker search --filter stars=3 windows :koristimo da filtriramo pretragu sa najvisom ocenom zvezdica 
+
+docker search --filter stars=12 --filter is-official=true windows : official=true je image koji je izbacen officialno od npr. microsoft-a pored toga postoji i (is-automated=true) slika koju su izbacili neki korisnici koji su radili na tome
