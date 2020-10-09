@@ -1,5 +1,7 @@
 DOCKER rad iz CMD-a
 
+sta je docker file? :to je tekstualni fajl u kome se nalaze komande koje smo napisali docker moze da pravi automacki images tako sto cita nase instrukcije iz docker fajla kada pokrenemo docker image ona se naziva docker container
+
 program iz komandnog pronta pozivamo sa docker u nastavku slede neke komande
 
 docker -v :provera verzije dockera
@@ -11,10 +13,40 @@ images - je datoteka koja se sastoji iz vise slojeva i koristi se za izvrsavanje
 
 docker je softverska platforma za virtuelizaciju na nivou OS-a i open source je. prednost dockera je sto mozemo da premestamo kontenjere(koji sadrze aplikacije..) na razlicite OS bez javljanja problema jer slika ukljucuje sve zavisnosti potrebne za izvrsavanje koda. docker ce koristiti funkcije izloacije resursa kernel os-a za pokretanje nezavisnih kontenjera na istom OS-u
 
-docker images  :komanda daje lisu slika koje se nalaze u nasem sistemu za sada su to hello-world, alpine/git, python lista sadrzi podatke kao sto su (image id, created i size)
+1. docker images  :komanda daje lisu slika koje se nalaze u nasem sistemu za sada su to hello-world, alpine/git, python lista sadrzi podatke kao sto su (image id, created i size)
 
-docker search :se koristi koju god sliku zelimo da dohvatimo sa docker hub-a
+docker search :se koristi za pretragu iamges koje zelimo da pretrazimo sa docker hub-a
 
 docker search --filter stars=3 windows :koristimo da filtriramo pretragu sa najvisom ocenom zvezdica 
 
 docker search --filter stars=12 --filter is-official=true windows : official=true je image koji je izbacen officialno od npr. microsoft-a pored toga postoji i (is-automated=true) slika koju su izbacili neki korisnici koji su radili na tome
+
+2. docker pull :komanda se koristi da povucemo neki images sa docker huba npr.(docker pull python) krenuce da downlouduje python image
+
+docker images python:latest : filtriranje images po tagovima 
+
+<!> kreiranje docker fajla:
+
+za pocetak krecemo sa pullovanjem images-a :
+1. docker pull mcr.microsoft.com/windows/servercore:ltsc2019
+2. docker pull mcr.microsoft.com/windows/servercore/iis:windowsservercore-1909
+
+docker fajl se naziva (dockerfile) nema ekstenziju moze da se edituje u bilo kome editoru ja koristim VS-code postoji ugradnja koja moze da se instlira za pomoc u pisanju docker fajlova 
+
+ARG VERSION=20.05 :oznacava ime argumenta
+
+FROM python:3.8 : se koristi nalazenje image koja ce poceti da gradi proces 
+
+WORKDIR /code : ovim se definise radni direktorijum kontnjera bilo koja od komandi(RUN , CMD , ADD , COPY) ce se izvrsiti u navedenom radnom direktorijumu
+
+COPY :komanda COPY kopira fajlove i direktorijume do container fajlova u sistemu
+(COPY in_docker C:/Users/Milos/Desktop/docker_demo/in_docker : "opcija jedan", 
+COPY in_docker C:/docker_demo/in_docker : "druga i kraca opcija navodjenja putanje")
+
+RUN pip install -r requirements.txt : je glavna izvrsna komanda za dockerfile. korisnik postavlja(ime) UID - moze biti promenjen od korisnika u dockerfile ili dodavanjem flaga -u u docker RUN komandi 
+
+s
+
+greske:
+1. ako se javi poruka "image operating system "windows" cannot be used on this platform" treba da otvorimo hiden icons > desni klik na docker > switch to windows container : ovo se desava zato sto je docker automacki podesen na linux-OS containers
+2. ako se javi poruka "COPY failed: CreateFile \\?\C:\ProgramData\Docker\tmp\docker-builder242982500\HELLO_DOCKER_FLASK: The system cannot find the file specified." trebam da otvorim hiden icons > desni klik na docker ikonicu > settings > docker engine > u kodu "experimental" dodamo true isto tako cekiramo u command line > Enable experimental features
