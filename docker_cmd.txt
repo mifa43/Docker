@@ -45,8 +45,28 @@ COPY in_docker C:/docker_demo/in_docker : "druga i kraca opcija navodjenja putan
 
 RUN pip install -r requirements.txt : je glavna izvrsna komanda za dockerfile. korisnik postavlja(ime) UID - moze biti promenjen od korisnika u dockerfile ili dodavanjem flaga -u u docker RUN komandi 
 
-s
+docker build -t test:tag . :komanda za igradjnu image-a 
+ako se javi greska pri startovanju sa "don't have permission to read" potrebno je slede da se uradi preko terminala:
+
+	cd c:/lokacija do dockerfile 
+	docker build -t test:tag
+
+kreiraj fajlove pomocu cmd-a:
+	cd c:/lokacija
+	mkdir ime direktorijuma
+	notepad ime_fajla.ekstenzija
+
+docker run --name -d: -d govori da se container pokrece u odvojenom rezimu u pozadini se ispisuje novi container id
+--name : mozemo da dodelimo ime container-a prilikom pokretanja 
+
+docker ps : daje listu container koji rade
+ako dodamo flag -a : daje nam listu svih container-a u sistemu
+
+docker rm ime :rm se koristi za brisanje container-a
+rmi- : brisanje image
+
 
 greske:
 1. ako se javi poruka "image operating system "windows" cannot be used on this platform" treba da otvorimo hiden icons > desni klik na docker > switch to windows container : ovo se desava zato sto je docker automacki podesen na linux-OS containers
+
 2. ako se javi poruka "COPY failed: CreateFile \\?\C:\ProgramData\Docker\tmp\docker-builder242982500\HELLO_DOCKER_FLASK: The system cannot find the file specified." trebam da otvorim hiden icons > desni klik na docker ikonicu > settings > docker engine > u kodu "experimental" dodamo true isto tako cekiramo u command line > Enable experimental features
