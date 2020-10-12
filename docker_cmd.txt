@@ -65,7 +65,16 @@ ako dodamo flag -a : daje nam listu svih container-a u sistemu
 docker rm ime :rm se koristi za brisanje container-a
 rmi- : brisanje image
 
-docker run -d -p 5000:5000 myimage :pokreni u odvojenom rezimu -p na portu 5000 sto je development server za flask ime slike
+docker run -d -p 5000:5000 myimage :pokreni u odvojenom rezimu -p na portu 5000 sto je development server za flask ime slike nakon toga se ispisuje teskt u browseru
+
+ZA KREIRANJE AUTOMACKE IZMENE SKRIPTE U DOCKERU:
+
+1.docker volume create first-volume : kreiranje volumea za upgrejdovanje izmenjene skripte
+
+2.docker run -d -v C:/Users/Milos/Desktop/demo/src:/code -p 5000:5000 newimage:1 nakon kreiranja volumea idmo sa ovom komandom nakon toga je  automacki update skripte
+
+napomena: ako koristis windows sa WSL2 je automacki dozvoljeno sherovanje fajla sve sto je potrebno je da ukucamo docker stop container i docker start container nakona toga je izmena vido primetna 
+
 
 greske:
 1. ako se javi poruka "image operating system "windows" cannot be used on this platform" treba da otvorimo hiden icons > desni klik na docker > switch to windows container : ovo se desava zato sto je docker automacki podesen na linux-OS containers
