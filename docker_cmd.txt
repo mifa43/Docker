@@ -45,7 +45,7 @@ COPY in_docker C:/docker_demo/in_docker : "druga i kraca opcija navodjenja putan
 
 RUN pip install -r requirements.txt : je glavna izvrsna komanda za dockerfile. korisnik postavlja(ime) UID - moze biti promenjen od korisnika u dockerfile ili dodavanjem flaga -u u docker RUN komandi 
 
-docker build -t test:tag . :komanda za igradjnu image-a 
+docker build -t test:tag . :komanda za izradjnu image-a 
 ako se javi greska pri startovanju sa "don't have permission to read" potrebno je slede da se uradi preko terminala:
 
 	cd c:/lokacija do dockerfile 
@@ -65,6 +65,7 @@ ako dodamo flag -a : daje nam listu svih container-a u sistemu
 docker rm ime :rm se koristi za brisanje container-a
 rmi- : brisanje image
 
+docker run -d -p 5000:5000 myimage :pokreni u odvojenom rezimu -p na portu 5000 sto je development server za flask ime slike
 
 greske:
 1. ako se javi poruka "image operating system "windows" cannot be used on this platform" treba da otvorimo hiden icons > desni klik na docker > switch to windows container : ovo se desava zato sto je docker automacki podesen na linux-OS containers
